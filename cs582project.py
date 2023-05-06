@@ -5,8 +5,9 @@ from .models import Course
 
 
 
-class CourseDeleteView(View):
-    template_name = "courses/course_delete.html" # DetailView
+class CourseDeleteView(CourseObjectMixin, View):
+    template_name = "courses/course_delete.html"
+
 class CourseObjectMixin:
     model = Course
 
