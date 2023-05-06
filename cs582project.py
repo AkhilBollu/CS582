@@ -14,8 +14,9 @@ class CourseObjectMixin:
     def get_object(self):
         id = self.kwargs.get('id')
         if id is not None:
-            return get_object_or_404(self.model, id=id)
+            return get_object_or_404(self.model._default_manager, id=id)
         return None
+
 
 
 from django.urls import reverse_lazy
