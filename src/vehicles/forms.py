@@ -1,12 +1,12 @@
 from django import forms
 
 
-from .models import Product
+from .models import Vehicles
 
 
-class ProductForm(forms.ModelForm):
+class VehiclesForm(forms.ModelForm):
     title       = forms.CharField(label='', 
-                    widget=forms.TextInput(attrs={"placeholder": "Your title"}))
+                    widget=forms.TextInput(attrs={"placeholder": "Vehicle title"}))
     description = forms.CharField(
                         required=False, 
                         widget=forms.Textarea(
@@ -22,7 +22,7 @@ class ProductForm(forms.ModelForm):
     price       = forms.DecimalField(initial=199.99)
     
     class Meta:
-        model = Product
+        model = Vehicles
         fields = [
             'title',
             'description',
@@ -30,8 +30,8 @@ class ProductForm(forms.ModelForm):
         ]
 
 
-class RawProductForm(forms.Form):
-    title       = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder": "Your title"}))
+class RawVehiclesForm(forms.Form):
+    title       = forms.CharField(label='', widget=forms.TextInput(attrs={"placeholder": "Vehicle title"}))
     description = forms.CharField(
                         required=False, 
                         widget=forms.Textarea(
