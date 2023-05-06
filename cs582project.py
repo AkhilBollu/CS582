@@ -24,13 +24,35 @@ class CourseDeleteView(CourseObjectMixin, DeleteView):
 
 
 
-class CourseUpdateView(View):
-class CourseUpdateView(CourseObjectMixin, View):
-    template_name = "courses/course_update.html" # DetailView
-    def get_object(self):
-        id = self.kwargs.get('id')
-@@ -96,14 +97,11 @@ def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, context)
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView, FormView
+from .forms import CourseForm
+
+class CourseUpdateView(CourseObjectMixin, UpdateView):
+    model = Course
+    template_name = "courses/course_update.html"
+    form_class = CourseForm
+    success_url = reverse_lazy('course-list')
+
+class CourseUpdateFormView(CourseObjectMixin, FormView):
+    template_name = "courses/course_update.html"
+    form_class = CourseForm
+    success_url = reverse_lazy('course-list')
+
+    def get_initial(self):
+        initial = super().get_initial()
+        course = self.get_object()
+        initial['name'] = course.name
+        initial['description'] = course.description
+        return initial
+
+    def form_valid(self, form):
+        course = self.get_object()
+        course.name = form.cleaned_data['name']
+        course.description = form.cleaned_data['description']
+        course.save()
+        return super().form_valid(form)
+
 
 
 class CourseView(View):
