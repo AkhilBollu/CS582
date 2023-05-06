@@ -1,5 +1,8 @@
-from .models import Course 
-# BASE VIEW CLass = VIEW
+# from.models
+from django.shortcuts import get_object_or_404
+from django.views import View
+from .models import Course
+
 
 
 class CourseDeleteView(View):
