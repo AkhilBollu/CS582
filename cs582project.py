@@ -14,13 +14,14 @@ class CourseObjectMixin:
         return None
 
 
-class CourseDeleteView(CourseObjectMixin, View):
-    template_name = "courses/course_delete.html" # DetailView
-    def get(self, request, id=None, *args, **kwargs):
-        # GET method
-        context = {}
-@@ -34,7 +35,7 @@ def post(self, request, id=None,  *args, **kwargs):
-        return render(request, self.template_name, context)
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
+
+class CourseDeleteView(CourseObjectMixin, DeleteView):
+    model = Course
+    template_name = "courses/course_delete.html"
+    success_url = reverse_lazy('course-list')
+
 
 
 class CourseUpdateView(View):
