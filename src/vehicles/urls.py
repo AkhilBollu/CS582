@@ -1,18 +1,18 @@
 from django.urls import path
 from .views import (
-    product_create_view, 
-    product_detail_view, 
-    product_delete_view,
-    product_list_view,
-    product_update_view,
+    vehicle_create_view, 
+    vehicle_detail_view, 
+    vehicle_delete_view,
+    vehicle_list_view,
+    vehicle_update_view,
     
 )
 
-app_name = 'products'
+app_name = 'vehicles'
 urlpatterns = [
-    path('', product_list_view, name='product-list'),
-    path('create/', product_create_view, name='product-list'),
-    path('<int:id>/', product_detail_view, name='product-detail'),
-    path('<int:id>/update/', product_update_view, name='product-update'),
-    path('<int:id>/delete/', product_delete_view, name='product-delete'),
+    path('', vehicle_list_view, name='vehicle-list'),
+    path('create/', vehicle_create_view, name='vehicle-list'),
+    path('<int:id>/', vehicle_detail_view, name='vehicle-detail'),
+    path('<int:id>/update/', vehicle_update_view, name='vehicle-update'),
+    path('<int:id>/delete/', vehicle_delete_view, name='vehicle-delete'),
 ]
