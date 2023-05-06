@@ -55,17 +55,13 @@ class CourseUpdateFormView(CourseObjectMixin, FormView):
 
 
 
-class CourseView(View):
 class CourseView(CourseObjectMixin, View):
-    template_name = "courses/course_detail.html" # DetailView
-    def get(self, request, id=None, *args, **kwargs):
-        # GET method
-        context = {}
-        if id is not None:
-            obj = get_object_or_404(Course, id=id)
-            context['object'] = obj
+    template_name = "courses/course_detail.html"
+
+    def get(self, request, *args, **kwargs):
         context = {'object': self.get_object()}
         return render(request, self.template_name, context)
+
 
     # def post(request, *args, **kwargs):
     #     return render(request, 'about.html', {})
