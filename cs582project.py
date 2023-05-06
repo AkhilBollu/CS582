@@ -66,9 +66,12 @@ class CourseView(CourseObjectMixin, View):
     # def post(request, *args, **kwargs):
     #     return render(request, 'about.html', {})
 # HTTP METHODS
+from django.http import HttpResponse
+
 def my_fbv(request, *args, **kwargs):
     print(request.method)
-    return render(request, 'about.html', {})
+    return HttpResponse('Hello, World!')
+
 #!/usr/bin/env python
 import os
 import sys
