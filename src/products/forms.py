@@ -2,7 +2,7 @@ from django import forms
 
 
 from .models import Product
-
+-- adding comment on line 5
 
 class ProductForm(forms.ModelForm):
     title       = forms.CharField(label='', 
